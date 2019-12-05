@@ -4,10 +4,10 @@ import {
   ADD_POST
 } from './types'
 
-export const deletePost= (str) =>{
+export const deletePost= (id) =>{
   return{
     type:DELETE_POST,
-    payload:str
+    payload:id
   }
 }
 

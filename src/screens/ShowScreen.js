@@ -1,12 +1,16 @@
 import React from 'react'
 import {View,StyleSheet,Text} from 'react-native';
 
-const ShowScreen = ()=>{
+const ShowScreen = (props)=>{
+  const blog =props.navigation.getParam('item');
+
   return(
     <View>
-      <Text>sadasd<Text>
+      <Text>{blog.title}</Text>
+      <Text>{blog.id}</Text>
+      <Text>{blog.content}</Text>
     </View>
   )
-}
+};
 
 export default ShowScreen;
