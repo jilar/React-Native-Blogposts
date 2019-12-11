@@ -4,9 +4,6 @@ import {connect} from 'react-redux';
 import {addPost} from '../actions';
 import {Field, reduxForm} from'redux-form';
 
-const CreateScreen= (props) =>{
- const [newBlog, setNewBlog]= useState("");
-
 const renderInput=({input,label})=>{
   return(
     <View>
@@ -16,14 +13,13 @@ const renderInput=({input,label})=>{
       autoCapitalize="none"
       autoCorrect={false}
       value={input.value}
-      onChangeText={input.onChange((value)=>setNewBlog(value))}
+      onChangeText={input.onChange}
     />
     </View>
   )
-  const changeV= (value)=>{
-    setNewBlog(value);
-  }
 }
+
+const CreateScreen= (props) =>{
 
 const onSubmit= ({title,content})=>{
   if (title.length>1){
@@ -36,7 +32,6 @@ const onSubmit= ({title,content})=>{
    <View>
    <Field name='title' component={renderInput} label='Title'/>
    <Field name='content' component={renderInput} label='Enter Content'/>
-   <Text>{newBlog}</Text>
    <Button
      title="Add New Post"
      onPress={props.handleSubmit(onSubmit)}

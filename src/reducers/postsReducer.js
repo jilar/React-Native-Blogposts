@@ -1,4 +1,4 @@
-import {DELETE_POST,SHOW_POSTS,ADD_POST} from '../actions/types';
+import {DELETE_POST,EDIT_POST,ADD_POST} from '../actions/types';
 
 const INITIAL_STATE=[
   {title: 'Blog Post #1',id:1, content: "filler content of blog 1"},
@@ -12,8 +12,8 @@ export default (state=INITIAL_STATE, action)=>{
       return state.filter((item)=>item.id !== action.payload);
     case ADD_POST:
       return [...state, action.payload];
-    case SHOW_POSTS:
-      return state;
+    case EDIT_POST:
+      return [...state, action.payload];
     default:
       return state;
   }

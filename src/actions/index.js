@@ -1,7 +1,8 @@
 import {
   DELETE_POST,
   SHOW_POSTS,
-  ADD_POST
+  ADD_POST,
+  EDIT_POST
 } from './types'
 
 export const deletePost= (id) =>{
@@ -19,6 +20,13 @@ export const showPosts= () =>{
 }
 
 export const addPost= (post) =>{
+  return{
+    type:ADD_POST,
+    payload:post
+  }
+}
+
+export const editPost= (post) =>{
   return{
     type:ADD_POST,
     payload:post

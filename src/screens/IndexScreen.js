@@ -12,7 +12,7 @@ const IndexScreen =(props) =>{
         keyExtractor={item => item.title}
         renderItem={({item})=> {
           return(
-            <TouchableOpacity onPress={()=>props.navigation.navigate("Show", {item})}>
+            <TouchableOpacity onPress={()=>props.navigation.navigate("Show", {item,id:item.id})}>
               <View style= {styles.row}>
                 <Text style={styles.title}>{item.title}</Text>
                 <TouchableOpacity onPress={()=>props.deletePost(item.id)}>
