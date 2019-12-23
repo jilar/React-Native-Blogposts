@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import {editPost} from '../actions';
 import {Field, reduxForm} from'redux-form';
 
-const renderInput=({input,label,dvalue})=>{
+const renderInput=({input,label})=>{
+  //input.value=null;
   return(
     <View>
     <Text style={{fontSize:20}}>{label}</Text>
     <TextInput
-      defaultValue={dvalue}
       style={styles.input}
       autoCapitalize="none"
       autoCorrect={false}
@@ -21,19 +21,18 @@ const renderInput=({input,label,dvalue})=>{
 }
 
 const EditScreen= (props) =>{
-
  const onSubmit= ({title,content})=>{
-   if (title.length>1){
-     props.editPost({id:props.Post.id,title,content});
-     props.navigation.navigate('Index');
-   };
+   //console.log(title+" "+content+" "+props.id);
+  if (title.length>1){
+    props.editPost({id:props.id,title,content});
+    props.navigation.navigate('Index');
+  };
  }
-
 
  return(
    <View>
-     <Field name='title' component={renderInput} label='Title' dValue={props.Post.title}/>
-     <Field name='content' component={renderInput} label='Enter Content'dValue={props.Post.content} />
+     <Field name='title' component={renderInput} label='Title'/>
+     <Field name='content' component={renderInput} label='Enter Content'/>
      <Button
        title="Edit Post"
        onPress={props.handleSubmit(onSubmit)}
@@ -60,13 +59,14 @@ const styles = StyleSheet.create({
 const mapStateToProps=(state,ownProps)=>{
   const post= state.Posts.find((item)=>item.id == ownProps.navigation.getParam('id'));
   return {
-    Post: post
+    id:post.id,
+    initialValues: {title:post.title, content:post.content}
   }
 }
 
 //export default connect(null,{addPost})(CreateScreen);
 const formWrapped= reduxForm({
-  form:'editPost'
+  form:'editPost',
 })(EditScreen);
 
 export default connect(mapStateToProps,{editPost})(formWrapped);

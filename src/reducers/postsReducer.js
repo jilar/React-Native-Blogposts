@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {DELETE_POST,EDIT_POST,ADD_POST} from '../actions/types';
 
 const INITIAL_STATE=[
@@ -13,7 +14,12 @@ export default (state=INITIAL_STATE, action)=>{
     case ADD_POST:
       return [...state, action.payload];
     case EDIT_POST:
-      return [...state, action.payload];
+      //return _.map(state, item =>{
+      //    return _.find(action, obj => obj.id === item.id) || item
+    //  });
+       return state.map(blogpost=> {
+         return blogpost.id === action.payload.id ? action.payload :blogpost
+       });
     default:
       return state;
   }

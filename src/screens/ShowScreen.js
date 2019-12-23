@@ -4,7 +4,6 @@ import {EvilIcons} from '@expo/vector-icons';
 
 const ShowScreen = (props)=>{
   const blog =props.navigation.getParam('item');
-
   return(
     <View>
       <Text>{blog.title}</Text>

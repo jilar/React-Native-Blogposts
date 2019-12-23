@@ -28,7 +28,7 @@ export const addPost= (post) =>{
 
 export const editPost= (post) =>{
   return{
-    type:ADD_POST,
+    type:EDIT_POST,
     payload:post
   }
 }
