@@ -1,19 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import {Provider} from 'react-redux';
+import{createStore, combineReducers} from 'redux';
+import reducers from './src/reducers'
+import IndexScreen from './src/screens/IndexScreen';
+import ShowScreen from './src/screens/ShowScreen';
+import CreateScreen from './src/screens/CreateScreen';
+import EditScreen from './src/screens/EditScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on ydour app!</Text>
-    </View>
-  );
-}
+let store = createStore(reducers);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const navigator = createStackNavigator({
+  Index: IndexScreen,
+  Show:ShowScreen,
+  Create:CreateScreen,
+  Edit:EditScreen
+},{
+  initialRouteName:'Index',
+  defaultNavigationOptions:{
+    title:'Blog Posts'
+  }
 });
+
+const App= createAppContainer(navigator);
+
+export default () =>{
+  return(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+};
